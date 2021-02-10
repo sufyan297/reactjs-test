@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet'
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Breadcrumb, Row, Col, Button} from 'antd';
 import { get } from 'lodash';
 import Axios from 'axios';
 
@@ -119,12 +119,20 @@ const withSidebarLayout = (WrappedComponent, extra) => {
             </Sider>
 
             <Layout className="site-layout">
-              <Header className="site-layout-background" style={{ padding: 0 }} />
+            <Header className="site-layout-sub-header-background" style={{ padding: 0, background: '#fff', display: 'flex', justifyContent: 'flex-end', paddingRight: 10 }}>
+              <Row>
+                <Col style={{paddingRight: 10}}>
+                  Welcome Sufyan
+                </Col>
+                <Col>
+                  <Button type="primary" size={'large'}>
+                    Logout
+                  </Button>
+                </Col>
+              </Row>
+            </Header>
+
               <Content style={{ margin: '0 16px' }}>
-                {/* <Breadcrumb style={{ margin: '16px 0' }}>
-                  <Breadcrumb.Item>User</Breadcrumb.Item>
-                  <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                </Breadcrumb> */}
                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
           
                   <WrappedComponent {...this.props} />
@@ -134,7 +142,6 @@ const withSidebarLayout = (WrappedComponent, extra) => {
               <Footer style={{ textAlign: 'center' }}>Copyright &copy; 2021</Footer>
             </Layout>
           </Layout>
-
         </>
       )
     }
