@@ -2,11 +2,13 @@ import { observable, action, makeObservable } from 'mobx';
 
 class User {
   user = null;
+  isLoggedIn = false;
 
   constructor() {
     makeObservable(this, {
       setUser: action,
-      user: observable
+      user: observable,
+      isLoggedIn: observable
     })
   }
   

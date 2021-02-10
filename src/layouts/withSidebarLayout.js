@@ -4,6 +4,8 @@ import { Layout, Menu, Breadcrumb, Row, Col, Button} from 'antd';
 import { get } from 'lodash';
 import Axios from 'axios';
 
+import { inject, observer } from 'mobx-react';
+
 import { 
   DashboardOutlined,
   TeamOutlined,
@@ -24,7 +26,7 @@ const MyIcons = {
 // import '../css/style.scss';
 
 const withSidebarLayout = (WrappedComponent, extra) => {
-  return class SidebarLayout extends React.Component {
+  return inject(['userStore'])(observer(class SidebarLayout extends React.Component {
     state = {
       collapsed: false,
       menuItems: []
@@ -122,7 +124,7 @@ const withSidebarLayout = (WrappedComponent, extra) => {
             <Header className="site-layout-sub-header-background" style={{ padding: 0, background: '#fff', display: 'flex', justifyContent: 'flex-end', paddingRight: 10 }}>
               <Row>
                 <Col style={{paddingRight: 10}}>
-                  Welcome Sufyan
+                  Welcome {get(this.props, 'userStore.user', null)}
                 </Col>
                 <Col>
                   <Button type="primary" size={'large'}>
@@ -145,6 +147,7 @@ const withSidebarLayout = (WrappedComponent, extra) => {
         </>
       )
     }
-  }
+  }));
 }
+// export default inject(['userStore'])(observer(withSidebarLayout));
 export default withSidebarLayout;

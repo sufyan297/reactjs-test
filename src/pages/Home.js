@@ -15,4 +15,5 @@ function Home(props) {
     </div>
   )
 }
-export default withSidebarLayout(inject(['userStore'])(observer(Home)), { title: 'Home' });
+// export default withSidebarLayout(inject(['userStore'])(observer(Home)), { title: 'Home' });
+export default withSidebarLayout(Home, { title: 'Home' });
