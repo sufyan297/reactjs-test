@@ -8,7 +8,7 @@ import { Layout, Row, Col } from 'antd';
 import '../css/style.scss';
 
 const withLoginLayout = (WrappedComponent, extra) => {
-  return class withLoginLayout extends React.Component {
+  return class LoginLayout extends React.Component {
     render() {
       return (
         <>

@@ -1,10 +1,16 @@
 import React from 'react';
 import { Row, Col, Form, Input, Button, Checkbox } from 'antd';
+import { inject, observer } from 'mobx-react';
 
-export default class LoginContainer extends React.Component {
+class LoginContainer extends React.Component {
 
+  componentDidMount() {
+    console.log("userStore: ", this.props.userStore);
+  }
   onFinish(data) {
     console.log("FormData: ", data);
+    this.props.userStore.setUser(data.username);
+    this.props.history.push('/');
   }
 
   onFinishFailed(data) {
@@ -73,3 +79,4 @@ export default class LoginContainer extends React.Component {
     )
   }
 }
+export default inject(['userStore'])(observer(LoginContainer));
