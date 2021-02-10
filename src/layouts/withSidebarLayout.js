@@ -101,7 +101,11 @@ const withSidebarLayout = (WrappedComponent, extra) => {
       }
       return null;   
     }
-  
+    
+    onLogout() {
+      this.props.history.push('/login');
+    }
+    
     render() {
       console.log("Location: ",this.props.location);
       return (
@@ -127,7 +131,7 @@ const withSidebarLayout = (WrappedComponent, extra) => {
                   Welcome {get(this.props, 'userStore.user', null)}
                 </Col>
                 <Col>
-                  <Button type="primary" size={'large'}>
+                  <Button type="primary" size={'large'} onClick={() => this.onLogout()}>
                     Logout
                   </Button>
                 </Col>
