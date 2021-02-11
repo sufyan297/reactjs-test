@@ -24,7 +24,7 @@ function App() {
           <PrivateRoute path="/" exact component={Home} />
           {/* <Route path="/sample" render={routerProps => <Sample {...routerProps} sampleProp={"sample"}/>} /> */}
           <Route path="/login" component={Login} />
-          <Route path="/profile" component={Profile} />
+          <PrivateRoute path="/profile" component={Profile} />
           <Route path='/default' render={() => <Redirect to= "/" />} />
           <Route component={NoMatch} />
         </Switch>

@@ -1,11 +1,11 @@
 import React from 'react';
 import withSidebarLayout from '../layouts/withSidebarLayout';
-
+import ProfileContainer from '../components/profile/ProfileContainer';
 export class Profile extends React.Component {
   render() {
     return (
       <div>
-        Profile Page
+        <ProfileContainer {...this.props} />
       </div>
     )
   }

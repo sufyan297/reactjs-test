@@ -104,7 +104,8 @@ const withSidebarLayout = (WrappedComponent, extra) => {
     }
     
     onLogout() {
-      this.props.history.push('/login');
+      this.props.userStore.onLogout();
+      // this.props.history.push('/login');
     }
     
     render() {
