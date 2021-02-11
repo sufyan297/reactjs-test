@@ -46,6 +46,7 @@ const withSidebarLayout = (WrappedComponent, extra) => {
         },
         responseType: 'json'
       });
+      console.log("menuItems: ", resp.data);
       this.setState({menuItems: resp.data });
     }
 
@@ -108,6 +109,7 @@ const withSidebarLayout = (WrappedComponent, extra) => {
     
     render() {
       console.log("Location: ",this.props.location);
+      console.log("Properties: ", this.props);
       return (
         <>
           <Helmet>
@@ -128,7 +130,7 @@ const withSidebarLayout = (WrappedComponent, extra) => {
             <Header className="site-layout-sub-header-background" style={{ padding: 0, background: '#fff', display: 'flex', justifyContent: 'flex-end', paddingRight: 10 }}>
               <Row>
                 <Col style={{paddingRight: 10}}>
-                  Welcome {get(this.props, 'userStore.user', null)}
+                  Welcome {get(this.props, 'userStore.user.username', null)}
                 </Col>
                 <Col>
                   <Button type="primary" size={'large'} onClick={() => this.onLogout()}>
@@ -153,5 +155,4 @@ const withSidebarLayout = (WrappedComponent, extra) => {
     }
   }));
 }
-// export default inject(['userStore'])(observer(withSidebarLayout));
 export default withSidebarLayout;

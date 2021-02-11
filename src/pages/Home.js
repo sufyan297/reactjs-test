@@ -4,16 +4,19 @@ import { get } from 'lodash';
 import { inject, observer } from 'mobx-react';
 
 
-function Home(props) {
-  const [ counter, setCounter ] = useState(0);
-  return (
-    <div>
-      <h1>This is our HomePage.</h1>
-      <h1>Welcome {get(props, 'userStore.user', null)}</h1>
-      {counter}
-      <button onClick={() => setCounter(counter + 1)}>Counter++</button>
-    </div>
-  )
+class Home extends React.Component {
+  
+  render() {
+    return (
+      <div>
+        <h1>This is our HomePage.</h1>
+        {/* <h1>Welcome {get(props, 'userStore.user', null)}</h1> */}
+        
+        {/* <button onClick={() => setCounter(counter + 1)}>Counter++</button> */}
+      </div>
+    )
+  }
 }
+
 // export default withSidebarLayout(inject(['userStore'])(observer(Home)), { title: 'Home' });
 export default withSidebarLayout(Home, { title: 'Home' });

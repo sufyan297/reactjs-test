@@ -1,10 +1,12 @@
 import 'antd/dist/antd.css';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
+import PrivateRoute from './helpers/PrivateRoute';
 
 import { Provider } from 'mobx-react';
 
 import mobx from './stores';
+
 
 //Pages
 import Home from './pages/Home';
@@ -19,7 +21,7 @@ function App() {
     <div className="App">
       <Provider {...stores}>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <PrivateRoute path="/" exact component={Home} />
           {/* <Route path="/sample" render={routerProps => <Sample {...routerProps} sampleProp={"sample"}/>} /> */}
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />

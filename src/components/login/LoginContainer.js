@@ -9,7 +9,7 @@ class LoginContainer extends React.Component {
   }
   onFinish(data) {
     console.log("FormData: ", data);
-    this.props.userStore.setUser(data.username);
+    this.props.userStore.onLogin(data);
     this.props.history.push('/');
   }
 
