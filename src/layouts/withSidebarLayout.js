@@ -10,7 +10,8 @@ import {
   DashboardOutlined,
   TeamOutlined,
   UserOutlined,
-  QuestionOutlined
+  QuestionOutlined,
+  PictureOutlined
 } from "@ant-design/icons";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -19,7 +20,9 @@ const { SubMenu } = Menu;
 const MyIcons = {
   dashboard: DashboardOutlined,
   team: TeamOutlined,
-  question: QuestionOutlined
+  question: QuestionOutlined,
+  picture: PictureOutlined,
+  user: UserOutlined
 }
 
 //CSS
@@ -114,7 +117,7 @@ const withSidebarLayout = (WrappedComponent, extra) => {
       return (
         <>
           <Helmet>
-            <title>{extra.title || 'Dashboard'}</title>
+            <title>{get(extra, 'title', 'Dashboard')}</title>
           </Helmet>
 
           <Layout style={{ minHeight: '100vh' }}>

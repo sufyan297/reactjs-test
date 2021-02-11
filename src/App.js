@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import Profile from './pages/Profile';
+import Movies from './pages/Movies';
 
 function App() {
   const stores = mobx();
@@ -25,6 +26,8 @@ function App() {
           {/* <Route path="/sample" render={routerProps => <Sample {...routerProps} sampleProp={"sample"}/>} /> */}
           <Route path="/login" component={Login} />
           <PrivateRoute path="/profile" component={Profile} />
+          <PrivateRoute path="/movies" exact component={Movies} />
+
           <Route path='/default' render={() => <Redirect to= "/" />} />
           <Route component={NoMatch} />
         </Switch>
