@@ -10,4 +10,4 @@ class Login extends React.Component {
     )
   }
 }
-export default withLoginLayout(Login, { title: 'Login'});
+export default withLoginLayout(Login, { title: 'Login' });

@@ -23,13 +23,14 @@ const _http = ({url = '', method = 'GET', data = null, headers = {}, extra = {} 
     axios({
       method: method,
       mode: 'no-cors',
-      url: API_END_POINT + url,
-
+      url: process.env.REACT_APP_API_ENDPOINT + url,
+      
       crossdomain: true,    
       responseType: 'json',
       headers: {
         // Accept: 'application/json',
-        ...auth
+        ...auth,
+        ...headers
       },
       ...extra
     })

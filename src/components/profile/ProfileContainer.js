@@ -12,9 +12,13 @@ export default class ProfileContainer extends React.Component {
 
   onSubmit() {
     const tmpUsername = this.state.username;
+    this.props.userStore.onGetCountries(); //
     this.props.userStore.setUser({ ...this.props.userStore.user, username: tmpUsername});
   }
 
+  onTest() {
+    console.log("1) Test");
+  }
 
   render() {
     return (

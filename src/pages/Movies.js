@@ -19,8 +19,14 @@ class Movies extends React.Component {
     this.fetchMovies();
   }
 
+  onMovieSelect(movie) {
+    console.log("Movie: ", movie);
+    this.props.movieStore.setMovie(movie);
+  }
+
   async fetchMovies() {
     try {
+      // const resp = await this.props.movieStore.onGetMovies(this.state.movieName);
       const resp = await this.props.movieStore.onGetMovies(this.state.movieName);
       console.log("RESPONSE: ", resp);
       const data = get(resp, 'Search', []);
@@ -46,7 +52,7 @@ class Movies extends React.Component {
         <Row gutter={[16, 16]} >
             {
             get(this.state, 'movies', []).map((movie) => (
-              <Col xs={12} sm={6} md={4} key={movie.imdbID}>
+              <Col xs={12} sm={6} md={4} key={movie.imdbID} onClick={() => this.onMovieSelect(movie)}>
                 <Card hoverable style={{ width: 240 }} cover={<img alt="example" src={movie.Poster} />}>
                   <Meta title={get(movie, 'Title', '')} description="" />
                 </Card>
@@ -59,3 +65,4 @@ class Movies extends React.Component {
   }
 }
 export default withSidebarLayout(inject(['movieStore'])(Movies), { title: 'Movies' });
+// export default inject(['movieStore'])(observer(Movies);

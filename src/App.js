@@ -5,7 +5,7 @@ import PrivateRoute from './helpers/PrivateRoute';
 
 import { Provider } from 'mobx-react';
 
-import mobx from './stores';
+import mobx from './stores/index';
 
 
 //Pages
@@ -14,10 +14,14 @@ import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import Profile from './pages/Profile';
 import Movies from './pages/Movies';
-
+import About from './pages/About';
 function App() {
   const stores = mobx();
-  console.log("Stores: ", stores);
+  // console.log("Stores: ", stores);
+  console.log("NODE_ENV: ", process.env.NODE_ENV);
+  console.log("API END POINT: ", process.env.REACT_APP_API_ENDPOINT);
+  console.log("FOO: ", process.env.REACT_APP_FOO);
+
   return (
     <div className="App">
       <Provider {...stores}>
@@ -27,6 +31,8 @@ function App() {
           <Route path="/login" component={Login} />
           <PrivateRoute path="/profile" component={Profile} />
           <PrivateRoute path="/movies" exact component={Movies} />
+
+          <PrivateRoute path="/about" exact component={About} />
 
           <Route path='/default' render={() => <Redirect to= "/" />} />
           <Route component={NoMatch} />

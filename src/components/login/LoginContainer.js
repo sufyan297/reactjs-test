@@ -7,10 +7,11 @@ class LoginContainer extends React.Component {
   componentDidMount() {
     console.log("userStore: ", this.props.userStore);
   }
-  onFinish(data) {
+  async onFinish(data) {
     console.log("FormData: ", data);
-    this.props.userStore.onLogin(data);
-    this.props.history.push('/');
+    const resp = await this.props.userStore.onLogin(data);
+    
+    // this.props.history.push('/');
   }
 
   onFinishFailed(data) {

@@ -6,12 +6,9 @@ import { inject, observer } from 'mobx-react';
 
 class PrivateRoute extends React.Component {
   render() {
-    const user = this.props.userStore.getUser();
-    console.log("user Logged: ", user);
-    const isLoggedIn = get(this.props, 'userStore.isLoggedIn', false);
+    const isLoggedIn = get(this.props, 'authStore.isLoggedIn', false);
     console.log("isLogged: ",isLoggedIn);
     const WrappedComponent = this.props.component;
-    console.log("TEstStore: ", this.props.testStore['foo']);
     if (!isLoggedIn) {
       console.log("Not Logged...");
       // not logged in so redirect to login page with the return url
@@ -25,5 +22,4 @@ class PrivateRoute extends React.Component {
     )
   }
 }
-// export default inject(['userStore'])(observer(PrivateRoute));
-export default inject(['userStore'], ['testStore'])(PrivateRoute);
+export default inject(['authStore'])(observer(PrivateRoute));

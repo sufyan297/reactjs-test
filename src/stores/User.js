@@ -1,5 +1,6 @@
 import { observable, action, makeObservable } from 'mobx';
 import { autoSave } from '../helpers/mobx';
+import { http } from '../utils/axios';
 class User {
   user = {};
   isLoggedIn = false;
@@ -31,9 +32,38 @@ class User {
     }
   }
 
+  onGetCountries() {
+    return new Promise ((resolve, reject) => {
+      http({ url: 'v2/countries', method: 'GET' })
+      .then(resp => {
+        console.log("RESPONSE: ", resp);
+        resolve(resp);
+      })
+      .catch(err => {
+        reject(err);
+      })
+
+    })
+  }
+
   onLogin(user) {
-    this.setUser(user);
-    this.isLoggedIn = true;
+    return new Promise ((resolve, reject) => {
+      //Login Call
+      http({ url: 'user/login', method: 'POST', data: { username: user.username, password: user.password } })
+        .then(resp => {
+          console.log("RESPONSE: ", resp);
+          if (resp.success) {
+            localStorage.setItem('access_token', resp.data.token);
+            this.setUser(resp.data.user);
+            this.isLoggedIn = true;
+          }
+          resolve(resp);
+        })
+        .catch(err => {
+          reject(err);
+        })
+
+    })
   }
 
   setUser(user = {}) {
